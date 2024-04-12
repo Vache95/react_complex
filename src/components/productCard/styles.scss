@@ -1,0 +1,93 @@
+@import '../../app/styles/mixin.scss';
+
+.product-card {
+    height: 812px;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 15px;
+    @include flex-column;
+    background-color: var(--accent-gray-20);
+}
+
+.product-card__top {
+    width: 100%;
+    margin-bottom: 20px;
+
+    & img {
+        width: 100%;
+        height: 366px;
+        border-radius: 15px;
+        object-fit: cover;
+    }
+}
+
+.product-card__texts {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    & h3 {
+        white-space: normal;
+        word-wrap: break-word;
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        line-height: 43px;
+        margin-bottom: 20px;
+    }
+
+    & p {
+        white-space: normal;
+        word-wrap: break-word;
+        width: 100%;
+        line-height: 29px;
+    }
+}
+
+.product-card__bottom {
+    @include flex-column;
+
+    & span {
+        display: inline-block;
+        font-size: 36px;
+        line-height: 43px;
+        white-space: nowrap;
+        margin-bottom: 33px;
+    }
+
+    & .button-buy {
+        width: 281px;
+    }
+
+
+}
+
+.product-card__bottom-buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 7px;
+
+    & span {
+        display: inline-block;
+        margin: unset;
+        width: 128px;
+        height: 68px;
+        border-radius: 15px;
+        @include flex-center;
+        font-size: 36px;
+        line-height: 43.57px;
+        color: var(--accent-gray-30);
+        background-color: var(--accent-dark);
+    }
+
+    & .button-minus {
+        width: 68px;
+    }
+
+    & .button-plus {
+        width: 68px;
+    }
+}

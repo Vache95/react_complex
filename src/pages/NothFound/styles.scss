@@ -1,0 +1,11 @@
+@import '../../app//styles//mixin.scss';
+
+.not-found {
+    width: 100%;
+    height: 100vh;
+    @include flex-center;
+
+    h3 {
+        font-size: 50px;
+    }
+}

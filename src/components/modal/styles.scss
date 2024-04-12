@@ -1,0 +1,43 @@
+@import '../../app/styles//mixin.scss';
+
+.modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include flex-center;
+    background-color: rgba(0, 0, 0, 0.367);
+}
+
+.modal__content {
+    max-width: 300px;
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--accent-gray-20);
+
+    & p {
+        width: 100%;
+        text-align: center;
+        margin: 100px auto;
+    }
+}
+
+.modal__content-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+
+    & span {
+        color: var(--accent-dark);
+        cursor: pointer;
+    }
+
+
+}
