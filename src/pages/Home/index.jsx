@@ -34,6 +34,7 @@ const HomePage = () => {
   
 		dispatch(ProductThunk({page:page,page_size: 20}))
 
+      // eslint-disable-next-line
 	  },[dispatch,page])
 
 	  const handleScroll = () => {
@@ -70,9 +71,9 @@ const HomePage = () => {
 			<OrderCard selectProducts={selectProducts}/>
 			<div className='product-cards'>
 				{
-					!!products?.length && [...products,...products]?.map(product =>(
+					!!products?.length && [...products,...products]?.map((product,index) =>(
 						<ProductCard
-							key={product?.id}
+							key={index}
 							product={product}
 							productBuy={productBuy}
 							setProductBuy={setProductBuy}

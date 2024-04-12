@@ -1,7 +1,9 @@
 .order-card {
     max-width: 708px;
+    max-height: 230px;
     width: 100%;
     border-radius: 15px;
+    overflow-y: auto;
     padding: 10px;
     margin: 0px auto 47px;
     background-color: var(--accent-gray-20);
@@ -17,6 +19,11 @@
         max-width: 500px;
         width: 100%;
         margin-bottom: 20px;
+
+        tbody {
+            overflow-y: auto;
+            max-height: 200px;
+        }
 
         td {
             text-align: left;

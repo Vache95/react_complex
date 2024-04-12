@@ -59,12 +59,13 @@ const OrderCard = ({ selectProducts }) => {
             <table>
                 <tbody>
                     {
-                        Object.entries(selectProducts)?.map(item => (
+                        Object.entries(selectProducts)?.map((item,index) => (
                             <>
-                          {!!item?.[0] && !!item?.[1]?.selectProductCost && <tr>
+                          {!!item?.[0] && !!item?.[1]?.selectProductCost && 
+                              <tr key={index}>
                                 <td>товар {item?.[0]}</td>
                                 <td>x{item?.[1]?.selectProductCost / item?.[1]?.price }     {item?.[1]?.selectProductCost}₽</td>
-                            </tr>}
+                              </tr>}
                             </>
                         ))
                     }
