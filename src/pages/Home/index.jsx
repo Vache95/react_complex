@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Header,OrderCard,ProductCard,ReviewCard} from 'components';
 import {SkeletonComponent,Spinner} from 'components/ui';
+import { useOnViewPort } from 'hooks/useObserver';
 import './styles.scss'
 
 import { selectProduct } from 'features/Product/productSlice/productSlice';
@@ -23,34 +24,27 @@ const HomePage = () => {
 
 	const dispatch = useDispatch();
 
-  
+	const loadMoreButtonRef = useRef();
+    const isIntersecting = useOnViewPort(loadMoreButtonRef)
+    
+
 	useEffect(() => {
 	  dispatch(ReviewThunk())
 	},[dispatch])
 
 
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if(page >=  Math.ceil(totalItems / 20)) return
-  
-		dispatch(ProductThunk({page:page,page_size: 20}))
-
-      // eslint-disable-next-line
-	  },[dispatch,page])
-
-	  const handleScroll = () => {
-		if(window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.
-			scrollHeight){
+		
+             if(isIntersecting && !productLoading ){
+				dispatch(ProductThunk({page:page,page_size: 20}))
 				setPage(prev => prev + 1)
-		  }
-	  }
+			 }
+      // eslint-disable-next-line
+	  },[dispatch,page,isIntersecting])
 
-    useEffect(() => {
-          window.addEventListener("scroll",handleScroll)
-		return () => {
-			window.removeEventListener("scroll", handleScroll)
-		}
-	},[])
-
+	  
 	return <div className='wrapper'>
 		<div className='wrapper__container'>
 			<Header/>
@@ -71,7 +65,7 @@ const HomePage = () => {
 			<OrderCard selectProducts={selectProducts}/>
 			<div className='product-cards'>
 				{
-					!!products?.length && [...products,...products]?.map((product,index) =>(
+					 !!products?.length && products?.map((product,index) =>(
 						<ProductCard
 							key={index}
 							product={product}
@@ -81,7 +75,7 @@ const HomePage = () => {
 						/>
 					))
 				}
-				
+			 <div ref={loadMoreButtonRef} />
 			</div>
 			{productLoading && <div className='loading'><Spinner/></div>}
 		</div>

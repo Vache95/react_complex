@@ -34,7 +34,14 @@ export const product = createSlice({
       })
       .addCase(ProductThunk.fulfilled, (state,{payload}) => {
         state.loading = false;
-        state.products = payload 
+        state.products = {
+          amount:payload?.amount,
+          page:payload?.page,
+          total:payload?.total,
+          products: state.products?.products?.length
+          ? [...state.products?.products, ...payload.products]
+          : payload.products
+        }
       })
       .addCase(ProductThunk.rejected, (state) => {
         state.loading = false;
